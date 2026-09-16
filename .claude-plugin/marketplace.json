@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "killerwolf",
+  "owner": { "name": "Hamdi Laadhari", "url": "https://github.com/killerwolf" },
+  "description": "Claude Code skills by Hamdi Laadhari, installable one at a time.",
+  "plugins": [
+    {
+      "name": "repo-glowup",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/repo-glowup"],
+      "description": "Audit and upgrade a repo's discoverability: README, badges, package metadata, social preview card, CI, CHANGELOG/CONTRIBUTING, GitHub description and topics, and an optional landing page.",
+      "version": "1.0.0",
+      "author": { "name": "Hamdi Laadhari" },
+      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/repo-glowup",
+      "repository": "https://github.com/killerwolf/skills",
+      "license": "MIT",
+      "category": "development",
+      "keywords": ["readme", "badges", "discoverability", "open-source", "github", "npm", "social-preview"]
+    }
+  ]
+}
