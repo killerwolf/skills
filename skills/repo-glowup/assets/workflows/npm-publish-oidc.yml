@@ -1,0 +1,74 @@
+# Publish to npm on tag, using OIDC trusted publishing.
+#
+# Prerequisite, done once on npmjs.com: package -> Settings -> Trusted publisher ->
+# GitHub Actions, naming this repository and this workflow's filename. Without that,
+# every run fails at the publish step with a 404.
+#
+# No NPM_TOKEN is involved anywhere: GitHub mints a short-lived OIDC token that npm
+# exchanges for publish rights, and npm attaches a provenance attestation to the
+# published version automatically for a public repo.
+
+name: Publish to npm on tag
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+permissions:
+  contents: write # creating the GitHub Release at the end
+  id-token: write # the OIDC token for trusted publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # The version below comes from the tag name, so a workflow_dispatch from a
+      # branch would run `npm version main` and fail halfway through. Stop up front
+      # with a readable message. Dispatching against a tag ref still works.
+      - name: Require a tag
+        if: github.ref_type != 'tag'
+        run: |
+          echo "::error::This workflow must run from a tag; got ${{ github.ref_type }} '${{ github.ref_name }}'."
+          exit 1
+
+      - uses: actions/checkout@v4
+
+      # Deliberately no `registry-url` here. setup-node would write an `_authToken`
+      # line into .npmrc, npm would read that as "auth is already configured", skip
+      # the OIDC exchange entirely and fail with E404. Put the registry in a
+      # checked-in .npmrc instead.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      # Node 22 bundles npm 10.x; trusted publishing needs npm >= 11.5.1.
+      - name: Upgrade npm for trusted publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
+
+      - run: npm ci
+
+      # The quality workflow only runs on push/PR to main, so a tag push is otherwise
+      # ungated. Run the suite here or a red commit publishes.
+      - run: npm test
+
+      - run: npm run build
+
+      - run: npm version --no-git-tag-version --allow-same-version ${{ github.ref_name }}
+
+      - run: npm publish --access public
+
+      # Create the release after npm succeeds, so a failed publish does not leave an
+      # orphan release behind.
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "${{ github.ref_name }}" \
+            --generate-notes \
+            --verify-tag

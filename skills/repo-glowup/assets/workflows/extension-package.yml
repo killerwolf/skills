@@ -1,0 +1,67 @@
+# Package a browser extension as a zip on every push, and attach it to the GitHub
+# Release when a tag is pushed.
+#
+# Two reasons this is worth having even with no store automation: people can install
+# the exact reviewed build, and every push proves the tree still packages.
+#
+# Set SOURCE_DIR to whatever directory contains manifest.json — the repo root and the
+# build output are frequently not the same.
+
+name: Package extension
+
+on:
+  push:
+    branches: [main]
+    tags: ["*"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write # attaching the zip to the release
+
+env:
+  SOURCE_DIR: .
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the manifest
+        id: manifest
+        run: |
+          MANIFEST="${SOURCE_DIR}/manifest.json"
+          test -f "$MANIFEST" || { echo "::error::No manifest.json in ${SOURCE_DIR}"; exit 1; }
+          NAME=$(jq -r '.name' "$MANIFEST" | tr -cs '[:alnum:]._-' '-' | sed 's/-*$//')
+          VERSION=$(jq -r '.version' "$MANIFEST")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Packaging $NAME $VERSION"
+
+      # Catches manifest problems that only surface at upload time otherwise. A few
+      # warnings are Firefox-specific; the manifest validation applies to both stores.
+      - name: Lint the extension
+        continue-on-error: true
+        run: npx --yes web-ext lint --source-dir "${SOURCE_DIR}"
+
+      - name: Build the zip
+        run: |
+          cd "${SOURCE_DIR}"
+          zip -r "${GITHUB_WORKSPACE}/${{ steps.manifest.outputs.name }}-${{ steps.manifest.outputs.version }}.zip" . \
+            -x '*.git*' '*node_modules*' '*.DS_Store' '*store-assets*' '*.md'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.manifest.outputs.name }}-${{ steps.manifest.outputs.version }}
+          path: "*.zip"
+
+      - name: Attach the zip to the release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "${{ github.ref_name }}" --generate-notes --verify-tag \
+            || echo "release already exists, uploading to it"
+          gh release upload "${{ github.ref_name }}" ./*.zip --clobber

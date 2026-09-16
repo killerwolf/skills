@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{TITLE}} — {{TAGLINE}}</title>
+    <meta name="description" content="{{TAGLINE}}" />
+    <link rel="canonical" href="{{SITE_URL}}" />
+    <link rel="icon" href="{{FAVICON}}" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{TITLE}}" />
+    <meta property="og:title" content="{{TITLE}} — {{TAGLINE}}" />
+    <meta property="og:description" content="{{TAGLINE}}" />
+    <meta property="og:url" content="{{SITE_URL}}" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{TITLE}} — {{TAGLINE}}" />
+    <meta name="twitter:description" content="{{TAGLINE}}" />
+    <meta name="twitter:image" content="{{OG_IMAGE}}" />
+
+    <style>
+      /* System fonts only — no webfont fetch to race, and it matches whatever the
+         reader's OS already looks like, which reads as more "real app" than a
+         downloaded typeface does. */
+      :root {
+        --bg: #0b0c0e;
+        --bg-raised: #141517;
+        --fg: #f5f6f7;
+        --fg-dim: #a8adb4;
+        --border: #24262a;
+        --accent: {{ACCENT}};
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #ffffff;
+          --bg-raised: #f6f7f8;
+          --fg: #16181b;
+          --fg-dim: #565c66;
+          --border: #e4e6e9;
+        }
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.5;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+      header.site {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 0;
+      }
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; }
+      .brand img { width: 28px; height: 28px; border-radius: 7px; }
+      .site nav { display: flex; gap: 24px; font-size: 15px; }
+      .site nav a { color: var(--fg-dim); text-decoration: none; }
+      .site nav a:hover { color: var(--fg); }
+
+      .hero { padding: 72px 0 56px; text-align: center; }
+      .hero .icon { width: 80px; height: 80px; border-radius: 18px; margin-bottom: 28px; }
+      .hero h1 {
+        font-size: clamp(32px, 5vw, 52px);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+      .hero .tagline {
+        font-size: clamp(17px, 2.4vw, 21px);
+        color: var(--fg-dim);
+        max-width: 46ch;
+        margin: 0 auto 36px;
+      }
+      .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 26px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        border: 1px solid transparent;
+      }
+      .btn-primary { background: var(--accent); color: #0b0c0e; }
+      .btn-primary:hover { filter: brightness(1.08); }
+      .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn-secondary:hover { border-color: var(--fg-dim); }
+
+      /* The one image on the page that has to earn its space — a real screenshot
+         or GIF of the thing working, not a mockup. Swap the src, keep the shadow. */
+      .shot-frame { margin: 56px 0; }
+      .shot-frame img {
+        display: block;
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.5);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 56px 0;
+      }
+      .feature {
+        background: var(--bg-raised);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+      }
+      .feature .emoji { font-size: 26px; margin-bottom: 12px; display: block; }
+      .feature h3 { font-size: 16px; margin-bottom: 8px; }
+      .feature p { font-size: 14px; color: var(--fg-dim); }
+
+      footer.site {
+        border-top: 1px solid var(--border);
+        padding: 32px 0 48px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 14px;
+        color: var(--fg-dim);
+      }
+      footer.site a { text-decoration: none; }
+      footer.site a:hover { color: var(--fg); }
+      footer.site .links { display: flex; gap: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <div class="brand">
+          <img src="{{FAVICON}}" alt="" />
+          {{TITLE}}
+        </div>
+        <nav>
+          <a href="{{REPO_URL}}">GitHub</a>
+          <a href="{{DOCS_URL}}">Docs</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <img class="icon" src="{{ICON}}" alt="" />
+        <h1>{{HEADLINE}}</h1>
+        <p class="tagline">{{TAGLINE}}</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="{{PRIMARY_CTA_URL}}">{{PRIMARY_CTA_LABEL}}</a>
+          <a class="btn btn-secondary" href="{{REPO_URL}}">View on GitHub</a>
+        </div>
+      </section>
+
+      <!-- Real screenshot or GIF of the tool working. Delete this block rather
+           than fill it with a placeholder if there's nothing real to show yet. -->
+      <div class="shot-frame">
+        <img src="{{SCREENSHOT}}" alt="{{SCREENSHOT_ALT}}" />
+      </div>
+
+      <section class="features">
+        <div class="feature">
+          <span class="emoji">{{FEATURE_1_EMOJI}}</span>
+          <h3>{{FEATURE_1_TITLE}}</h3>
+          <p>{{FEATURE_1_BODY}}</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">{{FEATURE_2_EMOJI}}</span>
+          <h3>{{FEATURE_2_TITLE}}</h3>
+          <p>{{FEATURE_2_BODY}}</p>
+        </div>
+        <div class="feature">
+          <span class="emoji">{{FEATURE_3_EMOJI}}</span>
+          <h3>{{FEATURE_3_TITLE}}</h3>
+          <p>{{FEATURE_3_BODY}}</p>
+        </div>
+      </section>
+
+      <footer class="site">
+        <div>{{FOOTER_TEXT}}</div>
+        <div class="links">
+          <a href="{{REPO_URL}}">GitHub</a>
+          <a href="{{LICENSE_URL}}">{{LICENSE_NAME}}</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

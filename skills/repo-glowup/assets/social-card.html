@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /* System fonts only: a webfont fetch can lose the race with the screenshot. */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        background: {{BACKGROUND}};
+        color: {{FOREGROUND}};
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+      /* Soft accent wash in the corner so the card is not a flat rectangle. */
+      body::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 70%;
+        height: 160%;
+        background: radial-gradient(closest-side, {{ACCENT}}, transparent 70%);
+        opacity: 0.22;
+      }
+      .card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 64px;
+        padding: 0 88px;
+        width: 100%;
+      }
+      .text { flex: 1 1 auto; min-width: 0; }
+      .head { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; }
+      .icon {
+        width: 96px;
+        height: 96px;
+        border-radius: 20px;
+        flex: none;
+        object-fit: cover;
+      }
+      h1 {
+        font-size: 76px;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+      }
+      .tagline {
+        font-size: 34px;
+        line-height: 1.34;
+        font-weight: 400;
+        opacity: 0.78;
+        max-width: 24ch;
+      }
+      /* With no screenshot beside it, the text gets the full width instead of
+         wrapping into a narrow column with dead space to its right. */
+      .card:not(:has(.shot)) .tagline {
+        max-width: 34ch;
+        font-size: 38px;
+      }
+      .facts { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+      .fact {
+        font-size: 24px;
+        font-weight: 600;
+        padding: 11px 22px;
+        border-radius: 999px;
+        border: 2px solid {{ACCENT}};
+        color: {{FOREGROUND}};
+        white-space: nowrap;
+      }
+      .shot {
+        flex: none;
+        width: 46%;
+        max-height: 78%;
+        object-fit: cover;
+        object-position: left center;
+        border-radius: 18px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      }
+      .footer {
+        position: absolute;
+        left: 88px;
+        bottom: 52px;
+        font-size: 24px;
+        font-weight: 500;
+        opacity: 0.5;
+        letter-spacing: 0.01em;
+      }
+      /* No footer text? Don't reserve the space. */
+      .footer:empty { display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="text">
+        <div class="head">
+          {{ICON}}
+          <h1>{{TITLE}}</h1>
+        </div>
+        <p class="tagline">{{TAGLINE}}</p>
+        <div class="facts">{{FACTS}}</div>
+      </div>
+      {{SCREENSHOT}}
+    </div>
+    <div class="footer">{{FOOTER}}</div>
+  </body>
+</html>
