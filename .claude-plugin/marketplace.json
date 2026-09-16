@@ -17,6 +17,20 @@
       "license": "MIT",
       "category": "development",
       "keywords": ["readme", "badges", "discoverability", "open-source", "github", "npm", "social-preview"]
+    },
+    {
+      "name": "devto-post",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/devto-post"],
+      "description": "Research, draft and load a dev.to article in your voice, wait for you to publish it by hand, then draft the LinkedIn promo and schedule it once you approve. Asks for your dev.to details on first use.",
+      "version": "1.0.0",
+      "author": { "name": "Hamdi Laadhari" },
+      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/devto-post",
+      "repository": "https://github.com/killerwolf/skills",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["devto", "linkedin", "writing", "publishing", "blogging"]
     }
   ]
 }
