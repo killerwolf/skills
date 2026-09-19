@@ -3,6 +3,11 @@
 Claude Code skills I use day to day, packaged as a plugin marketplace so each one can be
 installed on its own.
 
+<p align="center">
+  <a href="https://github.com/killerwolf/skills/actions/workflows/validate.yml"><img alt="validate" src="https://github.com/killerwolf/skills/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/killerwolf/skills/blob/main/LICENSE"><img alt="licence" src="https://img.shields.io/github/license/killerwolf/skills"></a>
+</p>
+
 ## Skills
 
 | Skill | What it does | Requirements |
@@ -103,16 +108,26 @@ skills/
 │           ├── audit.py
 │           ├── make_card.py
 │           └── repo_meta.sh
+├── .github/
+│   └── workflows/
+│       └── validate.yml
 ├── .gitignore
+├── CHANGELOG.md
+├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for adding or changing a skill, and
+[CHANGELOG.md](CHANGELOG.md) for what's shipped.
 
 ## Maintaining
 
 - When a skill changes, bump that plugin's `version` in `.claude-plugin/marketplace.json` —
   installed copies only update when the version is bumped.
-- Run `claude plugin validate --strict .` before pushing.
+- Run `claude plugin validate --strict .` before pushing — CI runs the same check.
 
 ## License
 

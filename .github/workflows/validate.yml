@@ -1,0 +1,29 @@
+# Validates the plugin marketplace and every skill's SKILL.md on every push and PR.
+#
+# The green check is what the README's CI badge points at, so keep the workflow
+# filename stable once the badge references it.
+
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code@2.1.278
+
+      - name: Validate marketplace
+        run: claude plugin validate --strict .
