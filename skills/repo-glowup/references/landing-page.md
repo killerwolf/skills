@@ -1,4 +1,4 @@
-# Landing page (GitHub Pages)
+# Landing page and hosting
 
 A landing page is optional and type-dependent — raise it in Phase 2 rather than
 building it unasked. It earns its place when the project's pitch is visual and the
@@ -16,6 +16,23 @@ If there's nothing real to demo yet — no working screenshot, no GIF — that's
 the page is premature, not a reason to fake one. A thin landing page with a mockup
 undermines trust the same way an inflated README does; better to ship it once there's
 something true to show.
+
+## Decide the scope before building
+
+Ask these as separate choices; agreeing to a landing page does not automatically mean
+agreeing to GitHub Pages or to a deployment workflow:
+
+- **Page:** create/update it, or skip it?
+- **Hosting:** GitHub Pages, Vercel, Netlify, Cloudflare Pages, an existing host, or
+  prepare files without deployment?
+- **Automation:** generate the page only, add provider configuration, and/or set the
+  repository homepage?
+
+GitHub Pages is the default implementation documented below because it needs no
+third-party account and works well for a static page, but it is not the default
+decision. For other providers, keep the page provider-neutral, avoid committing
+tokens or personal configuration, and document the manual project/repository
+connection and build-output settings in the final report.
 
 ## What goes on it
 
@@ -72,7 +89,8 @@ no bot commits, no branch to keep in sync with main.
 2. Put the filled-in `landing-page.html` at `docs/index.html` (rename it), plus any
    image assets it references, all under `docs/`. That's the workflow's default
    `SOURCE_DIR` and also GitHub's own default Pages folder, so the two conventions
-   line up without extra config.
+   line up without extra config. If using `site/`, `www/`, `landing/`, or
+   `landing-page/`, update `SOURCE_DIR` and the workflow trigger paths together.
 3. **The one step that can't be automated**: in the repo's Settings → Pages →
    "Build and deployment" → Source, switch it to **GitHub Actions**. The workflow
    will run either way, but the deploy step fails until this is set once by hand.
@@ -83,9 +101,9 @@ no bot commits, no branch to keep in sync with main.
    Actions run summary and in Settings → Pages.
 
 **If `docs/` is already the markdown documentation folder**, don't collide with it —
-use `landing/` or `site/` instead, and change `SOURCE_DIR` in the workflow to match
-(the audit script checks a few common folder names, including these, so it'll still
-get picked up next time).
+use `landing/` or `site/` instead, and change `SOURCE_DIR` in the workflow to match.
+The workflow includes the common static-site paths in its trigger so content changes
+still deploy.
 
 **Custom domain**: if the project has one, a `CNAME` file containing just the domain
 goes inside the source folder (`docs/CNAME`, committed) — it's plain content as far

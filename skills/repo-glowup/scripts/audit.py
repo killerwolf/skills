@@ -598,7 +598,7 @@ def to_markdown(r):
     lp = r["landing_page"]
     lp_local = bool(lp["workflow"] or lp["source_candidates"] or lp["gh_pages_branch"])
     L.append(
-        f"| Landing page (GitHub Pages) | {tick(lp_local or bool(lp['pages_configured']))}"
+        f"| Landing page / Pages signals | {tick(lp_local or bool(lp['pages_configured']))}"
         + (f" ({lp['workflow']})" if lp["workflow"] else "")
         + " |"
     )

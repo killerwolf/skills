@@ -67,6 +67,12 @@ a revert.
 A few things worth raising explicitly at this point, because they are the ones people
 most often don't realise are missing or don't think to ask for:
 
+- **Landing-page scope and hosting.** Ask separately whether to create/update the page,
+  where it should be hosted (GitHub Pages, Vercel, Netlify, Cloudflare Pages, an
+  existing host, or nowhere yet), and whether to prepare files only or configure
+  deployment. Never assume GitHub Pages just because the repository is on GitHub.
+  For a provider without a checked-in adapter, prepare provider-neutral files and
+  document the connection steps instead of inventing credentials or secrets.
 - **The social preview image.** Every GitHub link they paste anywhere currently renders
   as grey text. See Phase 3.
 - **The repo description and topics.** GitHub's own search runs on these. An empty
@@ -128,12 +134,12 @@ few that a reader actually trusts. If CI exists, check the badge in the README p
 at the right workflow file.
 
 **Landing page.** Optional — only when it was agreed in scope during Phase 2. The
-audit's "Landing page (GitHub Pages)" row says whether one already exists (a workflow
-that deploys Pages, a recognised source folder, or Pages already enabled on the repo
-per the API). When adding one: `assets/landing-page.html` for the page,
-`assets/workflows/gh-pages.yml` for the deploy, `references/landing-page.md` for the
-full playbook including the one manual Settings step. Skip this for a plain npm
-library or small CLI by default — see the reference for when it earns its place.
+audit's landing-page row covers recognised static source folders and GitHub Pages
+signals; it cannot prove that an external provider is connected. Choose the hosting
+path explicitly: `assets/landing-page.html` is the page template, while
+`assets/workflows/gh-pages.yml` is only for the GitHub Pages option. Skip this for a
+plain npm library or small CLI by default — see the reference for when it earns its
+place.
 
 **GitHub listing — description, homepage, topics.** This is API-automatable, so do it:
 
