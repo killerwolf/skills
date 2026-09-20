@@ -67,6 +67,12 @@ a revert.
 A few things worth raising explicitly at this point, because they are the ones people
 most often don't realise are missing or don't think to ask for:
 
+- **Landing-page scope and hosting.** Ask separately whether to create/update the page,
+  where it should be hosted (GitHub Pages, Vercel, Netlify, Cloudflare Pages, an
+  existing host, or nowhere yet), and whether to prepare files only or configure
+  deployment. Never assume GitHub Pages just because the repository is on GitHub.
+  For a provider without a checked-in adapter, prepare provider-neutral files and
+  document the connection steps instead of inventing credentials or secrets.
 - **The social preview image.** Every GitHub link they paste anywhere currently renders
   as grey text. See Phase 3.
 - **The repo description and topics.** GitHub's own search runs on these. An empty
@@ -128,19 +134,24 @@ few that a reader actually trusts. If CI exists, check the badge in the README p
 at the right workflow file.
 
 **Landing page.** Optional — only when it was agreed in scope during Phase 2. The
-audit's "Landing page (GitHub Pages)" row says whether one already exists (a workflow
-that deploys Pages, a recognised source folder, or Pages already enabled on the repo
-per the API). When adding one: `assets/landing-page.html` for the page,
-`assets/workflows/gh-pages.yml` for the deploy, `references/landing-page.md` for the
-full playbook including the one manual Settings step. Skip this for a plain npm
-library or small CLI by default — see the reference for when it earns its place.
+audit's landing-page row covers recognised static source folders and GitHub Pages
+signals; it cannot prove that an external provider is connected. Choose the hosting
+path explicitly: `assets/landing-page.html` is the page template, while
+`assets/workflows/gh-pages.yml` is only for the GitHub Pages option. Skip this for a
+plain npm library or small CLI by default — see the reference for when it earns its
+place.
 
-**GitHub listing — description, homepage, topics.** This is API-automatable, so do it:
+**GitHub listing — description, homepage, topics.** The description and topics are
+independent of hosting and can be updated when they are in scope. Set the homepage
+only when the user selected a deployment or supplied an existing public URL; if they
+selected "nowhere yet" or "prepare files only", leave the current homepage unchanged
+and report that no live URL is available. This is API-automatable:
 
 ```bash
-bash "${CLAUDE_SKILL_DIR}/scripts/repo_meta.sh" --description "..." --homepage "..." --topics "topic-a,topic-b"
+bash "${CLAUDE_SKILL_DIR}/scripts/repo_meta.sh" --description "..." --topics "topic-a,topic-b"
 ```
 
+When a confirmed public URL exists, add `--homepage "..."` to the command.
 The script shows the current values first, normalises topics to GitHub's rules
 (lowercase, hyphens, ≤50 chars, ≤20 of them) and asks before writing. Topics are how
 GitHub's own search and "explore" surfaces find a repo, so treat them as keywords with
