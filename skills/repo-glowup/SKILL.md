@@ -141,12 +141,17 @@ path explicitly: `assets/landing-page.html` is the page template, while
 plain npm library or small CLI by default — see the reference for when it earns its
 place.
 
-**GitHub listing — description, homepage, topics.** This is API-automatable, so do it:
+**GitHub listing — description, homepage, topics.** The description and topics are
+independent of hosting and can be updated when they are in scope. Set the homepage
+only when the user selected a deployment or supplied an existing public URL; if they
+selected "nowhere yet" or "prepare files only", leave the current homepage unchanged
+and report that no live URL is available. This is API-automatable:
 
 ```bash
-bash "${CLAUDE_SKILL_DIR}/scripts/repo_meta.sh" --description "..." --homepage "..." --topics "topic-a,topic-b"
+bash "${CLAUDE_SKILL_DIR}/scripts/repo_meta.sh" --description "..." --topics "topic-a,topic-b"
 ```
 
+When a confirmed public URL exists, add `--homepage "..."` to the command.
 The script shows the current values first, normalises topics to GitHub's rules
 (lowercase, hyphens, ≤50 chars, ≤20 of them) and asks before writing. Topics are how
 GitHub's own search and "explore" surfaces find a repo, so treat them as keywords with
