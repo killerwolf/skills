@@ -108,9 +108,10 @@ should lead with a screenshot and "load unpacked" install instructions instead.
 Worth raising explicitly for an extension: the store listing is thin real estate for
 a pitch — a title, 132 characters, a few screenshots — and it's Google's or Mozilla's
 page, not yours, so it can't carry a badge row, a GIF-sized demo, or a link back to
-the repo above the fold. A simple GitHub Pages site fixes that and gives the project a
-memorable URL to put in the store listing's homepage field. See
-`references/landing-page.md` and `assets/workflows/gh-pages.yml`.
+the repo above the fold. A simple hosted site fixes that and gives the project a
+memorable URL to put in the store listing's homepage field. Ask for the hosting choice
+instead of assuming GitHub Pages. See `references/landing-page.md`; use
+`assets/workflows/gh-pages.yml` only when GitHub Pages is selected.
 
 ## Unpublished extensions
 

@@ -19,6 +19,10 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "site/**"
+      - "www/**"
+      - "landing/**"
+      - "landing-page/**"
       - ".github/workflows/gh-pages.yml"
   workflow_dispatch:
 

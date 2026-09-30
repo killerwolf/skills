@@ -29,9 +29,9 @@ nothing else on the page matters.
 repo's homepage field, is the highest-value thing on the page.
 
 - Deploy it somewhere, even if it's a toy. A live link converts an order of magnitude
-  better than a repo someone has to run locally. GitHub Pages is a free option for a
-  static build with no server component — see `references/landing-page.md` for the
-  workflow.
+  better than a repo someone has to run locally. Ask which host the user already uses
+  before choosing one; GitHub Pages is only one free option for a static build with no
+  server component — see `references/landing-page.md` for the decision guide.
 - The site needs its own head metadata — title, description, canonical, OG and Twitter
   cards with an absolute `og:image`. See `readme-anatomy.md`. Without it, every share of
   the URL renders as bare grey text.
