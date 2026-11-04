@@ -36,6 +36,7 @@ import os
 import re
 import subprocess
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -208,13 +209,15 @@ def fs_appel(chemin, **p):
         with urllib.request.urlopen(req, timeout=30) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
+        if e.code == 404 and chemin == '/search/':     # anciennes versions de l'API : /search/text/
+            return fs_appel('/search/text/', **{k: v for k, v in p.items() if k != 'token'})
         sys.exit(f'Freesound : HTTP {e.code}. 401 = clé refusée ; 403 sans corps = réseau bloqué (proxy ou IP de datacenter).')
 
 
 def freesound(a):
     if a.action == 'chercher':
         filtre = 'license:"Creative Commons 0"' + (f' duration:[0 TO {a.max_duree}]' if a.max_duree else '')
-        res = fs_appel('/search/text/', query=a.requete, filter=filtre, fields=CHAMPS, page_size=a.n, sort='rating_desc')
+        res = fs_appel('/search/', query=a.requete, filter=filtre, fields=CHAMPS, page_size=a.n, sort='rating_desc')
         for s in res['results']:
             print(f"{s['id']:>8}  {s['duration']:5.2f} s  ★{s.get('avg_rating', 0):.1f}  {s['name'][:50]:<50} {s['username']}")
     else:

@@ -10,6 +10,13 @@ Travaille dans une **copie de la bibliothèque propre au projet** (`--biblio DOS
   `python3 "${CLAUDE_SKILL_DIR}/scripts/sound_design.py" freesound chercher "mechanical keyboard key" --max-duree 0.5`
 - Ajouter, avec l'aperçu HQ en mp3, la conversion en WAV 48 kHz et le crédit noté :
   `python3 "${CLAUDE_SKILL_DIR}/scripts/sound_design.py" freesound prendre <id> --role key4 --biblio DOSSIER`
+- Points d'entrée de l'API v2 (https://freesound.org/apiv2/) :
+  - recherche `/apiv2/search/` (le script se rabat sur l'ancien `/search/text/` si besoin) ;
+  - fiche d'un son `/apiv2/sounds/<id>/` ;
+  - sons similaires `/apiv2/sounds/<id>/similar/` : pratique pour trouver une variante d'un son qui plaît ;
+  - packs `/apiv2/packs/<id>/sounds/`.
+
+  Télécharger l'original ou un pack entier (`/download/`) exige OAuth2 : le script prend l'aperçu HQ en mp3, qui suffit pour des bruitages courts.
 - Erreurs fréquentes :
   - **401** : la clé est refusée.
   - **403 sans corps** : le réseau est bloqué. C'est souvent le cas depuis un conteneur cloud : Freesound refuse certaines IP de datacenter. Fais-le en local.
