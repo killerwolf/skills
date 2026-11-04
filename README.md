@@ -19,8 +19,9 @@ installed on its own.
 | **Video** | | |
 | [`gemini-voices`](skills/gemini-voices) | Generates video voices with Gemini (narration, characters, two-voice dialogue) and splits a dialogue into one file per line. Written in French. | `uv` (or python3 with `google-genai` and `numpy`), `ffmpeg`, and a `GEMINI_API_KEY`. |
 | [`sound-design`](skills/sound-design) | Adds sound design to short videos: CC0 whooshes, pops, impacts, typing and dings timed to on-screen text and transitions, mixed under the voice. Ships 12 CC0 sounds and can add more from Freesound. Written in French. | python3 ≥ 3.8 and `ffmpeg`. Optional: a `FREESOUND_API_KEY` to add sounds from Freesound. |
+| [`studio-mate`](skills/studio-mate) | Your companion for piloting video studios from Notion, without code or GitHub: what is waiting for you across all studios, validate or reject ideas, review feedback, unblock a video, pick a date, add an idea or a channel to watch. It never generates, renders or publishes. Written in French. | The Notion connector, and a « 🗂️ Mes studios » page in Notion (it offers to create it). Works in the Claude app (phone, claude.ai) as well as Claude Code. |
 
-The two video skills pair well with [StudioVisualIdentity](https://github.com/killerwolf/StudioVisualIdentity),
+The video skills pair well with [StudioVisualIdentity](https://github.com/killerwolf/StudioVisualIdentity),
 a catalogue of 14 visual styles for vertical shorts plus the tooling to produce episodes.
 
 ### Try it
@@ -33,6 +34,7 @@ Once a skill is installed, just ask in plain words; the skill triggers on its ow
 | `devto-post` | "Write a dev.to post about how we cut our CI time in half." |
 | `gemini-voices` | « Génère la narration de cet épisode avec Gemini, voix Charon, ton documentaire. » |
 | `sound-design` | « Ajoute du sound design à cette vidéo » · « plus punchy » · « remplace le son de frappe ». |
+| `studio-mate` | « Qu'est-ce que j'ai à faire ? » · « Je garde les idées 2 et 5 de Motion de Culture » · « La vidéo sur les volcans, c'est bon pour samedi 18 h ». |
 
 ### Notes on `devto-post`
 
@@ -66,6 +68,18 @@ Once a skill is installed, just ask in plain words; the skill triggers on its ow
 - Work on a per-project copy of the library (`--biblio DIR` or `SOUND_DESIGN_LIB`) so updates to
   the plugin never overwrite your sounds.
 
+### Notes on `studio-mate`
+
+- It knows one Notion page only, « 🗂️ Mes studios »: the directory of your studios (hub, views,
+  Journal, review room). On first use it offers to build it from your hub links; adding a studio
+  later is adding a section to that page.
+- It follows the studios' Notion protocol: views only (never `sql` or `rows` mode), a line in the
+  studio's Journal after each change, your exact words for review feedback.
+- What it never does: generate a voice, render, publish, delete, or touch a studio you didn't
+  name. The studios' scheduled task on the Mac picks up its changes at the next run.
+- To use it in the Claude app (phone, claude.ai), zip the `skills/studio-mate` folder and upload it
+  in the app's Skills settings, with the Notion connector turned on.
+
 ## Install
 
 ### Option 1: plugin marketplace
@@ -76,6 +90,7 @@ claude plugin install repo-glowup@killerwolf
 claude plugin install devto-post@killerwolf
 claude plugin install gemini-voices@killerwolf
 claude plugin install sound-design@killerwolf
+claude plugin install studio-mate@killerwolf
 ```
 
 Install any plugin on its own, or several. Inside a Claude Code session, the equivalent slash
@@ -87,6 +102,7 @@ commands do the same thing:
 /plugin install devto-post@killerwolf
 /plugin install gemini-voices@killerwolf
 /plugin install sound-design@killerwolf
+/plugin install studio-mate@killerwolf
 ```
 
 Plugin skills are namespaced by plugin name, e.g. `/repo-glowup:repo-glowup`.
@@ -101,6 +117,7 @@ ln -s "$(pwd)/skills/skills/repo-glowup" ~/.claude/skills/repo-glowup
 ln -s "$(pwd)/skills/skills/devto-post" ~/.claude/skills/devto-post
 ln -s "$(pwd)/skills/skills/gemini-voices" ~/.claude/skills/gemini-voices
 ln -s "$(pwd)/skills/skills/sound-design" ~/.claude/skills/sound-design
+ln -s "$(pwd)/skills/skills/studio-mate" ~/.claude/skills/studio-mate
 ```
 
 (or `cp -R` instead of `ln -s` if you'd rather have an independent copy).
@@ -128,7 +145,7 @@ skills/
 └── README.md
 ```
 
-Current skills: `devto-post`, `gemini-voices`, `repo-glowup`, `sound-design`.
+Current skills: `devto-post`, `gemini-voices`, `repo-glowup`, `sound-design`, `studio-mate`.
 
 ## Contributing
 

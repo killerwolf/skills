@@ -59,6 +59,20 @@
       "license": "MIT",
       "category": "productivity",
       "keywords": ["sound-design", "sfx", "video", "shorts", "tiktok", "audio", "ffmpeg", "cc0"]
+    },
+    {
+      "name": "studio-mate",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/studio-mate"],
+      "description": "Pilot your video studios from Notion, without code or GitHub: what is waiting for you across all studios, validate ideas, give review feedback, unblock a video, pick a date. It reads and edits Notion only; the studios do the technical work on your Mac. The skill is written in French.",
+      "version": "1.0.0",
+      "author": { "name": "Hamdi Laadhari" },
+      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/studio-mate",
+      "repository": "https://github.com/killerwolf/skills",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["notion", "video", "studio", "youtube", "shorts", "workflow"]
     }
   ]
 }
