@@ -1,6 +1,6 @@
 ---
 name: studio-mate
-description: Le compagnon d'Hamdi pour piloter ses studios vidéo depuis Notion, sans code ni GitHub — « qu'est-ce que j'ai à faire ? » sur tous les studios, valider ou refuser des idées, donner un retour de relecture, débloquer une vidéo, choisir une date, ajouter une idée ou une chaîne à surveiller. Il lit et modifie Notion, rien d'autre ; le travail technique (voix, rendu, publication) est fait par les studios sur le Mac. Déclencheurs : « studio mate », « mes studios », « qu'est-ce que j'ai à faire », « quoi de neuf sur <studio> », « valide les idées… », « la vidéo … c'est bon », « débloque… ». Écrit en français.
+description: Le compagnon d'Hamdi pour piloter ses studios vidéo depuis Notion, sans code ni GitHub — « qu'est-ce que j'ai à faire ? » sur tous les studios, valider ou refuser des idées, donner un retour de relecture, débloquer une vidéo, choisir une date, ajouter une idée ou une chaîne à surveiller. Il lit et modifie Notion, rien d'autre ; le travail technique (voix, rendu, publication) est fait par les studios sur le Mac. Déclencheurs : « studio mate », « mes studios », « qu'est-ce que j'ai à faire », « quoi de neuf sur Motion de Culture », « valide les idées… », « la vidéo … c'est bon », « débloque… ». Écrit en français.
 ---
 
 # Studio Mate

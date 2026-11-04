@@ -7,6 +7,10 @@ and each skill's plugin version follows [Semantic Versioning](https://semver.org
 
 ## [Unreleased]
 
+### Fixed
+
+- `studio-mate` (v1.0.1): no angle brackets in the skill description, which claude.ai rejects.
+
 ### Added
 
 - `studio-mate` plugin (v1.0.0) — pilots video studios from Notion without code or GitHub:
