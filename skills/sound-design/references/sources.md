@@ -19,7 +19,7 @@ Travaille dans une **copie de la bibliothèque propre au projet** (`--biblio DOS
   Télécharger l'original ou un pack entier (`/download/`) exige OAuth2 : le script prend l'aperçu HQ en mp3, qui suffit pour des bruitages courts.
 - Erreurs fréquentes :
   - **401** : la clé est refusée.
-  - **403 sans corps** : le réseau est bloqué. C'est souvent le cas depuis un conteneur cloud : Freesound refuse certaines IP de datacenter. Fais-le en local.
+  - **403 sans corps** : le réseau est bloqué (proxy ou domaine non autorisé). Autorise `freesound.org` dans les réglages réseau de l'environnement, ou fais-le en local.
 
 ## OpenGameArt (joignable depuis le cloud, sans clé)
 - Recherche des effets sonores : `https://opengameart.org/art-search-advanced?keys=<mots>&field_art_type_tid%5B%5D=13`.

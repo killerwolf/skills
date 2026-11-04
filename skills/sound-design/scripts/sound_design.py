@@ -225,12 +225,12 @@ def freesound(a):
         if 'Creative Commons 0' not in s['license'] and '/zero/' not in s['license']:
             sys.exit(f"Licence {s['license']} : pas CC0, non ajouté.")
         lib = biblio_dir(a.biblio); lib.mkdir(parents=True, exist_ok=True)
-        tmp = lib / f'.fs{s["id"]}.mp3'
-        with urllib.request.urlopen(urllib.request.Request(s['previews']['preview-hq-mp3'], headers={'User-Agent': 'sound-design-skill/1.0'}), timeout=60) as r:
-            tmp.write_bytes(r.read())
         dst = lib / f'{a.role}.wav'
         if dst.exists():
             sys.exit(f'{dst} existe déjà : choisis un autre nom de rôle (ex. {a.role}2).')
+        tmp = lib / f'.fs{s["id"]}.mp3'
+        with urllib.request.urlopen(urllib.request.Request(s['previews']['preview-hq-mp3'], headers={'User-Agent': 'sound-design-skill/1.0'}), timeout=60) as r:
+            tmp.write_bytes(r.read())
         ffmpeg(['-y', '-loglevel', 'error', '-i', tmp, '-af', 'silenceremove=start_periods=1:start_threshold=-50dB',
                 '-ar', SR, '-ac', 2, '-c:a', 'pcm_s16le', dst])
         tmp.unlink()
