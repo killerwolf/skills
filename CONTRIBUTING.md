@@ -13,9 +13,9 @@ cd skills
 ```
 
 1. Put the skill under `skills/<name>/`, following the standard `SKILL.md` layout.
-2. Register it as a plugin in `.claude-plugin/marketplace.json` (or, for an existing
-   skill, bump that plugin's `version` — installed copies only update when the
-   version changes).
+2. Add it to the `skills` list of a plugin in `.claude-plugin/marketplace.json`, and
+   bump that plugin's `version` (same for a change to an existing skill) — installed
+   copies only update when the version changes.
 3. Add or update its row in the README's skill table.
 4. Add a `CHANGELOG.md` entry under `## [Unreleased]`.
 5. Run `claude plugin validate --strict .` locally — CI runs the same check.

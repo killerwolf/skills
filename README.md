@@ -1,7 +1,7 @@
 # skills
 
-Claude Code skills I use day to day, packaged as a plugin marketplace so each one can be
-installed on its own.
+Claude Code skills I use day to day, packaged as a plugin marketplace with two plugins:
+`studio` for video work and `toolbox` for dev and writing.
 
 <p align="center">
   <a href="https://github.com/killerwolf/skills/actions/workflows/validate.yml"><img alt="validate" src="https://github.com/killerwolf/skills/actions/workflows/validate.yml/badge.svg"></a>
@@ -12,11 +12,10 @@ installed on its own.
 
 | Skill | What it does | Requirements |
 | --- | --- | --- |
-| **Dev** | | |
+| **`toolbox` plugin** | | |
 | [`repo-glowup`](skills/repo-glowup) | Audits and upgrades a repo's discoverability: README, badges, package metadata, social preview card, CI, CHANGELOG/CONTRIBUTING, GitHub description and topics, and an optional landing page. | python3 ≥ 3.8 and git. Optional: an authenticated `gh`, for reading and setting the GitHub description and topics. Chrome or Chromium for social cards (macOS app paths, or `google-chrome`/`chromium` on `PATH`). |
-| **Writing** | | |
 | [`devto-post`](skills/devto-post) | Researches, drafts and loads a dev.to article in your voice, waits for you to publish it by hand, then drafts the matching LinkedIn promo and schedules it once you approve. | Claude in Chrome, logged in to dev.to and LinkedIn; python3; `rsvg-convert` (librsvg); curl. |
-| **Video** | | |
+| **`studio` plugin** | | |
 | [`gemini-voices`](skills/gemini-voices) | Generates video voices with Gemini (narration, characters, two-voice dialogue) and splits a dialogue into one file per line. Written in French. | `uv` (or python3 with `google-genai` and `numpy`), `ffmpeg`, and a `GEMINI_API_KEY`. |
 | [`sound-design`](skills/sound-design) | Adds sound design to short videos: CC0 whooshes, pops, impacts, typing and dings timed to on-screen text and transitions, mixed under the voice. Ships 12 CC0 sounds and can add more from Freesound. Written in French. | python3 ≥ 3.8 and `ffmpeg`. Optional: a `FREESOUND_API_KEY` to add sounds from Freesound. |
 | [`studio-mate`](skills/studio-mate) | Your companion for piloting video studios from Notion, without code or GitHub: what is waiting for you across all studios, validate or reject ideas, review feedback, unblock a video, pick a date, add an idea or a channel to watch. It never generates, renders or publishes. Written in French. | The Notion connector, and a « 🗂️ Mes studios » page in Notion (it offers to create it). Works in the Claude app (phone, claude.ai) as well as Claude Code. |
@@ -86,26 +85,21 @@ Once a skill is installed, just ask in plain words; the skill triggers on its ow
 
 ```bash
 claude plugin marketplace add killerwolf/skills
-claude plugin install repo-glowup@killerwolf
-claude plugin install devto-post@killerwolf
-claude plugin install gemini-voices@killerwolf
-claude plugin install sound-design@killerwolf
-claude plugin install studio-mate@killerwolf
+claude plugin install studio@killerwolf
+claude plugin install toolbox@killerwolf
 ```
 
-Install any plugin on its own, or several. Inside a Claude Code session, the equivalent slash
+Install either plugin on its own, or both; a plugin installs all its skills. To pick a single
+skill, use option 2. Inside a Claude Code session, the equivalent slash
 commands do the same thing:
 
 ```
 /plugin marketplace add killerwolf/skills
-/plugin install repo-glowup@killerwolf
-/plugin install devto-post@killerwolf
-/plugin install gemini-voices@killerwolf
-/plugin install sound-design@killerwolf
-/plugin install studio-mate@killerwolf
+/plugin install studio@killerwolf
+/plugin install toolbox@killerwolf
 ```
 
-Plugin skills are namespaced by plugin name, e.g. `/repo-glowup:repo-glowup`.
+Plugin skills are namespaced by plugin name, e.g. `/toolbox:repo-glowup`.
 
 ### Option 2: personal skill
 
@@ -132,7 +126,7 @@ tested here.
 
 ```
 skills/
-├── .claude-plugin/marketplace.json   # one plugin per skill (bump its version on every change)
+├── .claude-plugin/marketplace.json   # two plugins, each listing its skills (bump its version on every change)
 ├── skills/
 │   └── <skill>/
 │       ├── SKILL.md                  # what the agent reads
@@ -145,7 +139,8 @@ skills/
 └── README.md
 ```
 
-Current skills: `devto-post`, `gemini-voices`, `repo-glowup`, `sound-design`, `studio-mate`.
+Current plugins: `studio` (`gemini-voices`, `sound-design`, `studio-mate`) and `toolbox`
+(`devto-post`, `repo-glowup`).
 
 ## Contributing
 
@@ -154,7 +149,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for adding or changing a skill, and
 
 ## Maintaining
 
-- When a skill changes, bump that plugin's `version` in `.claude-plugin/marketplace.json` —
+- When a skill changes, bump the `version` of the plugin that lists it in `.claude-plugin/marketplace.json` —
   installed copies only update when the version is bumped.
 - Run `claude plugin validate --strict .` before pushing — CI runs the same check.
 

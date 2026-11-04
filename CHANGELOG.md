@@ -7,6 +7,13 @@ and each skill's plugin version follows [Semantic Versioning](https://semver.org
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking:** the five one-skill plugins are replaced by two plugins, `studio` (v1.0.0:
+  `gemini-voices`, `sound-design`, `studio-mate`) and `toolbox` (v1.0.0: `devto-post`,
+  `repo-glowup`). Uninstall the old plugins and install the new ones; skills are now
+  namespaced by the new plugin, e.g. `/studio:gemini-voices`.
+
 ### Fixed
 
 - `studio-mate` (v1.0.1): no angle brackets in the skill description, which claude.ai rejects.

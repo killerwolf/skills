@@ -1,78 +1,73 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "killerwolf",
-  "owner": { "name": "Hamdi Laadhari", "url": "https://github.com/killerwolf" },
-  "description": "Claude Code skills by Hamdi Laadhari, installable one at a time.",
+  "owner": {
+    "name": "Hamdi Laadhari",
+    "url": "https://github.com/killerwolf"
+  },
+  "description": "Claude Code skills by Hamdi Laadhari, grouped into two plugins: studio (video) and toolbox (dev and writing).",
   "plugins": [
     {
-      "name": "repo-glowup",
+      "name": "studio",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/repo-glowup"],
-      "description": "Audit and upgrade a repo's discoverability: README, badges, package metadata, social preview card, CI, CHANGELOG/CONTRIBUTING, GitHub description and topics, and an optional landing page.",
+      "skills": [
+        "./skills/gemini-voices",
+        "./skills/sound-design",
+        "./skills/studio-mate"
+      ],
+      "description": "Video studio skills: generate voices with Gemini, add sound design to short videos, and pilot your studios from Notion without code or GitHub. The skills are written in French.",
       "version": "1.0.0",
-      "author": { "name": "Hamdi Laadhari" },
-      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/repo-glowup",
-      "repository": "https://github.com/killerwolf/skills",
-      "license": "MIT",
-      "category": "development",
-      "keywords": ["readme", "badges", "discoverability", "open-source", "github", "npm", "social-preview"]
-    },
-    {
-      "name": "devto-post",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/devto-post"],
-      "description": "Research, draft and load a dev.to article in your voice, wait for you to publish it by hand, then draft the LinkedIn promo and schedule it once you approve. Asks for your dev.to details on first use.",
-      "version": "1.0.0",
-      "author": { "name": "Hamdi Laadhari" },
-      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/devto-post",
+      "author": {
+        "name": "Hamdi Laadhari"
+      },
+      "homepage": "https://github.com/killerwolf/skills",
       "repository": "https://github.com/killerwolf/skills",
       "license": "MIT",
       "category": "productivity",
-      "keywords": ["devto", "linkedin", "writing", "publishing", "blogging"]
+      "keywords": [
+        "video",
+        "shorts",
+        "studio",
+        "gemini",
+        "text-to-speech",
+        "voice",
+        "sound-design",
+        "sfx",
+        "audio",
+        "ffmpeg",
+        "notion",
+        "workflow"
+      ]
     },
     {
-      "name": "gemini-voices",
+      "name": "toolbox",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/gemini-voices"],
-      "description": "Generate video voices with Gemini (narration, characters, two-voice dialogue) and split a dialogue into one file per line. The skill is written in French.",
+      "skills": [
+        "./skills/devto-post",
+        "./skills/repo-glowup"
+      ],
+      "description": "Dev and writing skills: audit and upgrade a repo's discoverability, and research, draft and load a dev.to article with its LinkedIn promo.",
       "version": "1.0.0",
-      "author": { "name": "Hamdi Laadhari" },
-      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/gemini-voices",
+      "author": {
+        "name": "Hamdi Laadhari"
+      },
+      "homepage": "https://github.com/killerwolf/skills",
       "repository": "https://github.com/killerwolf/skills",
       "license": "MIT",
       "category": "productivity",
-      "keywords": ["gemini", "text-to-speech", "tts", "voice", "video", "audio"]
-    },
-    {
-      "name": "sound-design",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/sound-design"],
-      "description": "Add sound design to short videos: whooshes, pops, impacts, typing and dings timed to on-screen text and transitions, mixed under the voice, with a bundled CC0 sound library you can extend (OpenGameArt, Freesound). The skill is written in French.",
-      "version": "1.0.0",
-      "author": { "name": "Hamdi Laadhari" },
-      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/sound-design",
-      "repository": "https://github.com/killerwolf/skills",
-      "license": "MIT",
-      "category": "productivity",
-      "keywords": ["sound-design", "sfx", "video", "shorts", "tiktok", "audio", "ffmpeg", "cc0"]
-    },
-    {
-      "name": "studio-mate",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/studio-mate"],
-      "description": "Pilot your video studios from Notion, without code or GitHub: what is waiting for you across all studios, validate ideas, give review feedback, unblock a video, pick a date. It reads and edits Notion only; the studios do the technical work on your Mac. The skill is written in French.",
-      "version": "1.0.1",
-      "author": { "name": "Hamdi Laadhari" },
-      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/studio-mate",
-      "repository": "https://github.com/killerwolf/skills",
-      "license": "MIT",
-      "category": "productivity",
-      "keywords": ["notion", "video", "studio", "youtube", "shorts", "workflow"]
+      "keywords": [
+        "readme",
+        "badges",
+        "discoverability",
+        "open-source",
+        "github",
+        "devto",
+        "linkedin",
+        "writing",
+        "blogging"
+      ]
     }
   ]
 }
