@@ -9,6 +9,8 @@ and each skill's plugin version follows [Semantic Versioning](https://semver.org
 
 ### Added
 
+- `studio-mate` plugin (v1.0.0) — pilots video studios from Notion without code or GitHub:
+  what is waiting across all studios, ideas, review feedback, unblocking, dates.
 - CI workflow validating the plugin marketplace on every push and PR.
 - CONTRIBUTING.md and this changelog.
 - Repo social preview card.
