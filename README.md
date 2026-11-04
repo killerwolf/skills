@@ -15,6 +15,7 @@ installed on its own.
 | [`repo-glowup`](skills/repo-glowup) | Audits and upgrades a repo's discoverability: README, badges, package metadata, social preview card, CI, CHANGELOG/CONTRIBUTING, GitHub description and topics, and an optional landing page. | python3 ≥ 3.8 and git. Optional: an authenticated `gh`, for reading and setting the GitHub description and topics. Chrome or Chromium for social cards (macOS app paths, or `google-chrome`/`chromium` on `PATH`). |
 | [`devto-post`](skills/devto-post) | Researches, drafts and loads a dev.to article in your voice, waits for you to publish it by hand, then drafts the matching LinkedIn promo and schedules it once you approve. | Claude in Chrome, logged in to dev.to and LinkedIn; python3; `rsvg-convert` (librsvg); curl. |
 | [`gemini-voices`](skills/gemini-voices) | Generates video voices with Gemini (narration, characters, two-voice dialogue) and splits a dialogue into one file per line. Written in French. | `uv` (or python3 with `google-genai` and `numpy`), `ffmpeg`, and a `GEMINI_API_KEY`. |
+| [`sound-design`](skills/sound-design) | Adds sound design to short videos: CC0 whooshes, pops, impacts, typing and dings timed to on-screen text, mixed under the voice, with a checkable event file and an extendable sound library. Written in French. | python3 ≥ 3.8 and `ffmpeg`. Optional: a `FREESOUND_API_KEY` to add sounds from Freesound. |
 
 Notes on `devto-post`:
 
@@ -37,6 +38,7 @@ claude plugin marketplace add killerwolf/skills
 claude plugin install repo-glowup@killerwolf
 claude plugin install devto-post@killerwolf
 claude plugin install gemini-voices@killerwolf
+claude plugin install sound-design@killerwolf
 ```
 
 Install any plugin on its own, or several. Inside a Claude Code session, the equivalent slash
@@ -47,6 +49,7 @@ commands do the same thing:
 /plugin install repo-glowup@killerwolf
 /plugin install devto-post@killerwolf
 /plugin install gemini-voices@killerwolf
+/plugin install sound-design@killerwolf
 ```
 
 Plugin skills are namespaced by plugin name, e.g. `/repo-glowup:repo-glowup`.
@@ -60,6 +63,7 @@ git clone https://github.com/killerwolf/skills.git
 ln -s "$(pwd)/skills/skills/repo-glowup" ~/.claude/skills/repo-glowup
 ln -s "$(pwd)/skills/skills/devto-post" ~/.claude/skills/devto-post
 ln -s "$(pwd)/skills/skills/gemini-voices" ~/.claude/skills/gemini-voices
+ln -s "$(pwd)/skills/skills/sound-design" ~/.claude/skills/sound-design
 ```
 
 (or `cp -R` instead of `ln -s` if you'd rather have an independent copy).
@@ -92,30 +96,38 @@ skills/
 │   │   ├── SKILL.md
 │   │   └── scripts/
 │   │       └── gemini_voix.py
-│   └── repo-glowup/
+│   ├── repo-glowup/
+│   │   ├── SKILL.md
+│   │   ├── assets/
+│   │   │   ├── CHANGELOG.template.md
+│   │   │   ├── CONTRIBUTING.template.md
+│   │   │   ├── landing-page.html
+│   │   │   ├── social-card.html
+│   │   │   └── workflows/
+│   │   │       ├── extension-package.yml
+│   │   │       ├── gh-pages.yml
+│   │   │       ├── node-quality.yml
+│   │   │       └── npm-publish-oidc.yml
+│   │   ├── references/
+│   │   │   ├── apps.md
+│   │   │   ├── browser-extension.md
+│   │   │   ├── cli-tool.md
+│   │   │   ├── landing-page.md
+│   │   │   ├── npm-library.md
+│   │   │   ├── other-ecosystems.md
+│   │   │   └── readme-anatomy.md
+│   │   └── scripts/
+│   │       ├── audit.py
+│   │       ├── make_card.py
+│   │       └── repo_meta.sh
+│   └── sound-design/
 │       ├── SKILL.md
-│       ├── assets/
-│       │   ├── CHANGELOG.template.md
-│       │   ├── CONTRIBUTING.template.md
-│       │   ├── landing-page.html
-│       │   ├── social-card.html
-│       │   └── workflows/
-│       │       ├── extension-package.yml
-│       │       ├── gh-pages.yml
-│       │       ├── node-quality.yml
-│       │       └── npm-publish-oidc.yml
+│       ├── assets/sfx/          # 12 CC0 sounds + credits.json
 │       ├── references/
-│       │   ├── apps.md
-│       │   ├── browser-extension.md
-│       │   ├── cli-tool.md
-│       │   ├── landing-page.md
-│       │   ├── npm-library.md
-│       │   ├── other-ecosystems.md
-│       │   └── readme-anatomy.md
+│       │   ├── roles.md
+│       │   └── sources.md
 │       └── scripts/
-│           ├── audit.py
-│           ├── make_card.py
-│           └── repo_meta.sh
+│           └── sound_design.py
 ├── .github/
 │   └── workflows/
 │       └── validate.yml
