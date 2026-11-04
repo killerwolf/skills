@@ -31,6 +31,20 @@
       "license": "MIT",
       "category": "productivity",
       "keywords": ["devto", "linkedin", "writing", "publishing", "blogging"]
+    },
+    {
+      "name": "gemini-voices",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/gemini-voices"],
+      "description": "Generate video voices with Gemini (narration, characters, two-voice dialogue) and split a dialogue into one file per line. The skill is written in French.",
+      "version": "1.0.0",
+      "author": { "name": "Hamdi Laadhari" },
+      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/gemini-voices",
+      "repository": "https://github.com/killerwolf/skills",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["gemini", "text-to-speech", "tts", "voice", "video", "audio"]
     }
   ]
 }

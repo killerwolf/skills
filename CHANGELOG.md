@@ -12,6 +12,8 @@ and each skill's plugin version follows [Semantic Versioning](https://semver.org
 - CI workflow validating the plugin marketplace on every push and PR.
 - CONTRIBUTING.md and this changelog.
 - Repo social preview card.
+- `gemini-voices` plugin (v1.0.0) — generates video voices with Gemini and splits a
+  dialogue into one file per line.
 
 ## [2026-09-16]
 
