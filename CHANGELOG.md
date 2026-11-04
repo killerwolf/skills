@@ -14,6 +14,9 @@ and each skill's plugin version follows [Semantic Versioning](https://semver.org
 - Repo social preview card.
 - `gemini-voices` plugin (v1.0.0) — generates video voices with Gemini and splits a
   dialogue into one file per line.
+- `sound-design` plugin (v1.0.0) — adds sound design to short videos: CC0 sound effects
+  timed to on-screen text and transitions, mixed under the voice, with a bundled,
+  extendable sound library (OpenGameArt, Freesound).
 
 ## [2026-09-16]
 

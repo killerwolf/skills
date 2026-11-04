@@ -1,0 +1,110 @@
+{
+  "click.wav": {
+    "file": "click.wav",
+    "role": "click",
+    "source_pack": "Interface Sounds (Kenney)",
+    "author": "Kenney",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/interface-sounds",
+    "original_filename": "kenney_interfaceSounds.zip :: Audio/click_001.ogg"
+  },
+  "ding.wav": {
+    "file": "ding.wav",
+    "role": "ding",
+    "source_pack": "Interface Sounds (Kenney)",
+    "author": "Kenney",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/interface-sounds",
+    "original_filename": "kenney_interfaceSounds.zip :: Audio/confirmation_002.ogg"
+  },
+  "whoosh_fast.wav": {
+    "file": "whoosh_fast.wav",
+    "role": "whoosh_fast",
+    "source_pack": "18 Random Video Game Sound Effects",
+    "author": "bart",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/18-random-video-game-sound-effects",
+    "original_filename": "sound_effects.zip :: sound_effects/whoosh.wav"
+  },
+  "whoosh_soft.wav": {
+    "file": "whoosh_soft.wav",
+    "role": "whoosh_soft",
+    "source_pack": "Air Whoosh",
+    "author": "pyranostudios",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/air-whoosh",
+    "original_filename": "whoosh2_0.wav (trimmed to first 0.8 s, fade-out)"
+  },
+  "pop.wav": {
+    "file": "pop.wav",
+    "role": "pop",
+    "source_pack": "Random SFX Sound Effects",
+    "author": "Hazmat Harry",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/random-sfx-sound-effects",
+    "original_filename": "pop.flac"
+  },
+  "key1.wav": {
+    "file": "key1.wav",
+    "role": "key",
+    "source_pack": "Typewriter Sounds",
+    "author": "Cassie-OrbitGames",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/typewriter-sounds",
+    "original_filename": "typewriter6.wav (trimmed to 0.14 s, fade-out)"
+  },
+  "key2.wav": {
+    "file": "key2.wav",
+    "role": "key",
+    "source_pack": "Typewriter Sounds",
+    "author": "Cassie-OrbitGames",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/typewriter-sounds",
+    "original_filename": "typewriter7.wav (trimmed to 0.14 s, fade-out)"
+  },
+  "key3.wav": {
+    "file": "key3.wav",
+    "role": "key",
+    "source_pack": "Typewriter Sounds",
+    "author": "Cassie-OrbitGames",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/typewriter-sounds",
+    "original_filename": "typewriter8.wav (trimmed to 0.14 s, fade-out)"
+  },
+  "impact.wav": {
+    "file": "impact.wav",
+    "role": "impact",
+    "source_pack": "18 Random Video Game Sound Effects",
+    "author": "bart",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/18-random-video-game-sound-effects",
+    "original_filename": "sound_effects.zip :: sound_effects/thump.wav"
+  },
+  "impact_light.wav": {
+    "file": "impact_light.wav",
+    "role": "impact_light",
+    "source_pack": "75 CC0 Breaking Falling Hit SFX",
+    "author": "rubberduck",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx",
+    "original_filename": "sfx_breaking_and_falling.zip :: bfh1_wood_hit_01.ogg"
+  },
+  "glitch.wav": {
+    "file": "glitch.wav",
+    "role": "glitch",
+    "source_pack": "18 Random Video Game Sound Effects",
+    "author": "bart",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/18-random-video-game-sound-effects",
+    "original_filename": "sound_effects.zip :: sound_effects/invalid.wav"
+  },
+  "riser.wav": {
+    "file": "riser.wav",
+    "role": "riser",
+    "source_pack": "Level Up / Power Up / Coin Get (13 sounds)",
+    "author": "wobbleboxx",
+    "license": "CC0",
+    "page_url": "https://opengameart.org/content/level-up-power-up-coin-get-13-sounds",
+    "original_filename": "SoundPack01.zip :: Rise01.aif"
+  }
+}

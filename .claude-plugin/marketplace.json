@@ -45,6 +45,20 @@
       "license": "MIT",
       "category": "productivity",
       "keywords": ["gemini", "text-to-speech", "tts", "voice", "video", "audio"]
+    },
+    {
+      "name": "sound-design",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/sound-design"],
+      "description": "Add sound design to short videos: whooshes, pops, impacts, typing and dings timed to on-screen text and transitions, mixed under the voice, with a bundled CC0 sound library you can extend (OpenGameArt, Freesound). The skill is written in French.",
+      "version": "1.0.0",
+      "author": { "name": "Hamdi Laadhari" },
+      "homepage": "https://github.com/killerwolf/skills/tree/main/skills/sound-design",
+      "repository": "https://github.com/killerwolf/skills",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["sound-design", "sfx", "video", "shorts", "tiktok", "audio", "ffmpeg", "cc0"]
     }
   ]
 }
